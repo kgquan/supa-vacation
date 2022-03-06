@@ -1,10 +1,17 @@
 import Image from 'next/image';
 import Layout from '@/components/Layout';
 import { PrismaClient } from '@prisma/client';
+import { useRouter } from 'next/router';
 
 const prisma = new PrismaClient();
 
 const ListedHome = (home = null) => {
+    const router = useRouter();
+
+    if(router.isFallback) {
+        return 'Loading...';
+    }
+    
   return (
     <Layout>
       <div className="max-w-screen-lg mx-auto">
