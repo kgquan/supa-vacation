@@ -22,5 +22,11 @@ export default NextAuth({
     }),
   ],
   adapter: PrismaAdapter(prisma),
+  pages: {
+      siginIn: '/',
+      signOut: '/',
+      error: '/',
+      verifyRequest: '/',
+  },
 });
 
