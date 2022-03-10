@@ -6,6 +6,7 @@ import { PrismaClient } from '@prisma/client';
 import Handlebars from 'handlebars';
 import { readFileSync } from 'fs';
 import path from 'path';
+import GoogleProvider from 'next-auth/providers/google';
 
 const prisma = new PrismaClient();
 
@@ -67,6 +68,10 @@ export default NextAuth({
     EmailProvider({
         maxAge: 10 * 60,
         sendVerificationRequest,
+    }),
+    GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   adapter: PrismaAdapter(prisma),
